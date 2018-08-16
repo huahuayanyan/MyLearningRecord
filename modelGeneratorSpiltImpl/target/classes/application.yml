@@ -1,0 +1,18 @@
+#数据库分库实现-主库
+spring
+	datasource
+		type: com.alibaba.druid.pool.DruidDataSource
+		driver-class-name: com.mysql.jdbc.Driver
+		url: jdbc:mysql://127.0.0.1:3306/master?characterEncoding=UTF-8
+		username: root
+		password: root
+
+
+#数据库分库实现-从库
+spring
+	datasourceSlave
+		type: com.alibaba.druid.pool.DruidDataSource
+		driver-class-name: com.mysql.jdbc.Driver
+		url: jdbc:mysql://127.0.0.1:3306/slave?characterEncoding=UTF-8
+		username: root
+		password: root
