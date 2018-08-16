@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<properties resource="application.properties"/>
+	
+	<!-- 一个数据库一个context -->
+	<context id="mysqlServerTables" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="UTF-8"/>
+		<property name="autoDelimitKeywords" value="false"/>
+		<property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+		<property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+		
+		<!-- 生成的POJO将继承Serializable -->
+		<plugin type="com.mywork.generator.plugin.PaginationPlugin"></plugin>
+		<plugin type="com.mywork.generator.plugin.OverIsMergeablePlugin"></plugin>
+		
+		<!-- 注释生成规则 -->
+		<commentGenerator type="com.mywork.generator.comment.MyCommentGenerator">
+			<property name="suppressAllComments" value="false"/>	<!-- 是否取消注释 true:是;false:否-->
+			<property name="suppressDate" value="false"/> 			<!-- 是否生成注释代码时间戳 -->
+		</commentGenerator>
+		
+		<!-- 数据库连接URL、username、password -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+		connectionURL="jdbc:mysql://127.0.0.1:3306/test" userId="root"
+		password="rootroot">
+			<property name="useInformationSchema" value="true"/>
+		</jdbcConnection>
+		
+		<!-- 数据库的生成配置 -->
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+		<!-- 默认false,把JDBC DECIMAL和 NUMERIC类型解析为Integer,true把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+			<property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+		
+		<javaModelGenerator targetPackage="com.mywork.one.entity" targetProject="../one/src/main/java">
+			<!-- 是否在当前路径下新加一层schema(是否让schema作为包的后缀) -->
+			<property name="enableSubPackages" value="false"/>
+			<!-- 返回的数据值清理掉前后的空格 -->
+			<property name="trimStrings" value="true"/>
+		</javaModelGenerator>
+		
+		<!-- 对应的mapper.xml文件 -->
+		<sqlMapGenerator targetPackage="mybatis.mapper" targetProject="..\one\src\main\resources">
+			<property name="enableSubPackage" value="false"/>
+		</sqlMapGenerator>
+		
+		<!-- 对应的Mapper接口类文件 -->
+		<javaClientGenerator targetPackage="com.mywork.one.dao" type="XMLMAPPER" targetProject="../one/src/main/java">
+			<property name="enableSubPackage" value="false"/>
+		</javaClientGenerator>
+		
+		<!-- 要生成代码的所有表 -->
+		<!-- schema即为数据库名 tableName为对应的数据表 domainObject是要生成的实体类 enable*ByExample是否生成example类 默认为true-->
+		<table tableName="test_table" domainObjectName="TestTable"
+		enableCountByExample="true" enableUpdateByExample="true" 
+		enableDeleteByExample="true" enableSelectByExample="rrue"
+		selectByExampleQueryId="true">
+			<!-- 用于指定生成实体类时是否使用实际的列名作为实体类的属性名，默认为false是Camel Case风格 -->
+			<property name="useActualColumnNames" value="false"/>
+		</table>
+		<!-- <table tableName="" domainObjectName="" mapperName=""></table> -->
+	</context>
+</generatorConfiguration>       
