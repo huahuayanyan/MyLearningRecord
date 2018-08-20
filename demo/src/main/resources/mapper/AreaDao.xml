@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mywork.demo.dao.AreaDao">
+	<select id = "queryArea" resultType = "com.mywork.demo.entity.Area">
+		SELECT AREA_ID,AREA_NAME,PRIORITY,CREATE_TIME,LAST_EDIT_TIME
+		FROM TB_AREA
+		ORDER BY PRIORITY
+		DESC
+	</select>
+	
+	<select id = "queryAreaById" resultType = "com.mywork.demo.entity.Area">
+		SELECT AREA_ID,AREA_NAME,PRIORITY,CREATE_TIME,LAST_EDIT_TIME
+		FROM TB_AREA
+		WHERE 
+		AREA_ID = #{areaId}
+	</select>
+	
+	<insert id= "insertArea" useGeneratedKeys = "true" keyProperty = "areaId"
+			keyColumn = "AREA_ID" parameterType = "com.mywork.demo.entity.Area">
+		INSERT INTO 
+		TB_AREA (AREA_NAME,PRIORITY,CREATE_TIME,LAST_EDIT_TIME)
+		VALUES (#{areaName}, #{priority}, #{createTime}, #{lastEditTime})
+	</insert>
+	
+	<update id="updateArea" parameterType = "com.mywork.demo.entity.Area">
+		UPDATE TB_AREA
+		<set>
+			<if test="areaName!=null">AREA_NAME = #{areaName},</if>
+			<if test="priority!=null">PRIORITY = #{priority}</if>
+			<if test="createTime!=null">CREATE_TIME = #{createTime}</if>
+			<if test="lastEditTime!=null">LAST_EDIT_TIME = #{lastEditTime}</if>
+		</set>
+		WHERE AREA_ID = #{areaId}
+	</update>
+	
+	<delete id="deleteArea">
+		DELETE FROM
+		TB_AREA
+		WHERE AREA_ID = #{areaId}
+	</delete>
+</mapper>
