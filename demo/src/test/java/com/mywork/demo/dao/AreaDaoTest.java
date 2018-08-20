@@ -1,6 +1,8 @@
 package com.mywork.demo.dao;
 
-import java.util.Date;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,19 +19,19 @@ public class AreaDaoTest {
 	@Autowired
 	private AreaDao areaDao;
 	
-	/*@Test
+	@Test
 	public void queryArea() {
 		List<Area> areaList = areaDao.queryArea();
-		assertEquals(2, areaList.size());
-	}*/
+		assertEquals(3, areaList.size());
+	}
 	
 	/*@Test
 	public void queryAreaById() {
-		Integer areaId = 1;
+		Integer areaId = 3;
 		System.out.println(areaDao.queryAreaById(areaId).getAreaName());
 	}*/
 	
-	@Test
+	/*@Test
 	public void insertArea() {
 		Area area = new Area();
 		area.setAreaName("西苑");
@@ -37,7 +39,7 @@ public class AreaDaoTest {
 //		area.setCreateTime(new Date());
 //		area.setLastEditTime(new Date());
 		System.out.println(areaDao.insertArea(area));
-	}
+	}*/
 	
 	/*@Test
 	public void updateArea() {

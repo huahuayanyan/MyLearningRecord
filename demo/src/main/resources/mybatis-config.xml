@@ -11,7 +11,8 @@
 		<setting name="useColumnLabel" value="true"/>
 		<!-- 开启驼峰命名转换 -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
-        <!-- 打印查询语句 -->
-        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 打印查询语句  value: LOG4J(需要配置logj.properties,并且需要引入log4j架包)、SLF4J、  LOG4J2、JDK_LOGGING 、COMMONS_LOGGING、NO_LOGGING
+        		(前几个不可以答应出SQL语句)、STDOUT_LOGGING  -->
+        <setting name="logImpl" value="SLF4J" />
 	</settings>
 </configuration>
