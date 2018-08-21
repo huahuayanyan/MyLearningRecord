@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +21,21 @@ public class AreaDaoTest {
 	private AreaDao areaDao;
 	
 	@Test
+	@Ignore
 	public void queryArea() {
 		List<Area> areaList = areaDao.queryArea();
 		assertEquals(3, areaList.size());
 	}
 	
-	/*@Test
+	@Test
+	@Ignore
 	public void queryAreaById() {
 		Integer areaId = 3;
 		System.out.println(areaDao.queryAreaById(areaId).getAreaName());
-	}*/
+	}
 	
-	/*@Test
+	@Test
+	@Ignore
 	public void insertArea() {
 		Area area = new Area();
 		area.setAreaName("西苑");
@@ -39,9 +43,10 @@ public class AreaDaoTest {
 //		area.setCreateTime(new Date());
 //		area.setLastEditTime(new Date());
 		System.out.println(areaDao.insertArea(area));
-	}*/
+	}
 	
-	/*@Test
+	@Test
+	@Ignore
 	public void updateArea() {
 		Area area = new Area();
 		area.setAreaId(3);
@@ -49,11 +54,12 @@ public class AreaDaoTest {
 //		area.setCreateTime(new Date());
 //		area.setLastEditTime(new Date());
 		System.out.println(areaDao.updateArea(area));
-	}*/
+	}
 	
-	/*@Test
+	@Test
+	@Ignore
 	public void deleteArea() {
 		Integer areaId = 1;
 		System.out.println(areaDao.deleteArea(areaId));
-	}*/
+	}
 }
