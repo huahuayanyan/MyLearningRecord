@@ -28,7 +28,6 @@ public class AreaDaoTest {
 	}
 	
 	@Test
-	@Ignore
 	public void queryAreaById() {
 		Integer areaId = 3;
 		System.out.println(areaDao.queryAreaById(areaId).getAreaName());
