@@ -28,8 +28,8 @@
 		UPDATE TB_AREA
 		<set>
 			<if test="areaName!=null">AREA_NAME = #{areaName},</if>
-			<if test="priority!=null">PRIORITY = #{priority}</if>
-			<if test="createTime!=null">CREATE_TIME = #{createTime}</if>
+			<if test="priority!=null">PRIORITY = #{priority},</if>
+			<if test="createTime!=null">CREATE_TIME = #{createTime},</if>
 			<if test="lastEditTime!=null">LAST_EDIT_TIME = #{lastEditTime}</if>
 		</set>
 		WHERE AREA_ID = #{areaId}
