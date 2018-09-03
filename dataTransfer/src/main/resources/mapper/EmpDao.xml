@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mywork.dataTransfer.dao.EmpDao">
+	
+	<resultMap id = "baseResultMap" type = "com.mywork.dataTransfer.entity.Emp">
+		<id column="ID" property="id" jdbcType="BIGINT"/>
+		<result column="EMPNO" property="empno" jdbcType="INTEGER"/>
+		<result column="ENAME" property="ename" jdbcType="VARCHAR"/>
+		<result column="JOB" property="job" jdbcType="VARCHAR"/>
+		<result column="MGR" property="mgr" jdbcType="INTEGER"/>
+		<result column="HIREDATE" property="hiredate" jdbcType="TIMESTAMP"/>
+		<result column="SAL" property="sal" jdbcType="DECIMAL"/>
+		<result column="COMM" property="comm" jdbcType="DECIMAL"/>
+		<result column="DEPTNO" property="deptno" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id = "Base_Column_List">
+		ID,EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO
+	</sql>
+	
+	<!-- 旧表数据向新表进行转移 -->
+	<insert id = "transferDataToNewTable" useGeneratedKeys = "true" keyProperty = "id"
+			keyColumn = "ID" parameterType = "com.mywork.dataTransfer.entity.Emp">
+		INSERT INTO 
+		EMP_NEW (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
+			SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO
+			FROM EMP
+	</insert>
+	
+	<select id = "countSize" resultType = "Integer">
+		SELECT COUNT(*) FROM EMP
+	</select>
+	
+	<select id = "empList" resultMap = "baseResultMap">
+		SELECT 
+		<include refid ="Base_Column_List"/> 
+		FROM EMP
+	</select>
+	
+	<select id = "queryEmpById" resultMap = "baseResultMap">
+		SELECT 
+		<include refid ="Base_Column_List"/> 
+		FROM EMP
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</select>
+</mapper>
