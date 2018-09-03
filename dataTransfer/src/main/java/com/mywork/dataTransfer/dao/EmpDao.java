@@ -10,7 +10,7 @@ public interface EmpDao {
 	 * 批量数据迁移
 	 * @return
 	 */
-	int transferDataToNewTable();
+	int transferDataToNewTable(Integer id);
 	
 	List<Emp> empList();
 	

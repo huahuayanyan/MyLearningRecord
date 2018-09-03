@@ -22,11 +22,12 @@
 	
 	<!-- 旧表数据向新表进行转移 -->
 	<insert id = "transferDataToNewTable" useGeneratedKeys = "true" keyProperty = "id"
-			keyColumn = "ID" parameterType = "com.mywork.dataTransfer.entity.Emp">
+			keyColumn = "ID" parameterType = "Integer">
 		INSERT INTO 
 		EMP_NEW (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,DEPTNO)
-			SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO
+			(SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, DEPTNO
 			FROM EMP
+			WHERE ID = #{id,jdbcType=INTEGER})
 	</insert>
 	
 	<select id = "countSize" resultType = "Integer">

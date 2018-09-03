@@ -19,8 +19,8 @@ public class TransferDataServiceImpl implements TransferDataService{
 	
 	@Override
 	@Transactional
-	public int transferDataToNewTable() {
-		return empDao.transferDataToNewTable();
+	public int transferDataToNewTable(Integer id) {
+		return empDao.transferDataToNewTable(id);
 	}
 
 

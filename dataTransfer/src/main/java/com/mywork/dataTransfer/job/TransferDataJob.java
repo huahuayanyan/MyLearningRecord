@@ -14,7 +14,8 @@ public class TransferDataJob extends QuartzJobBean{
 	
 	@Override
 	protected void executeInternal(JobExecutionContext arg0) throws JobExecutionException {
-		transferDataService.transferDataToNewTable();
+		int i = 0;
+		transferDataService.transferDataToNewTable(i);
 	}
 
 }

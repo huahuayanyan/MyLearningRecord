@@ -6,7 +6,7 @@ import com.mywork.dataTransfer.entity.Emp;
 
 public interface TransferDataService {
 
-	int transferDataToNewTable();
+	int transferDataToNewTable(Integer id);
 	
 	List<Emp> empList();
 	

@@ -25,4 +25,8 @@ public class EmpController {
 		return transferDataService.countSize();
 	}
 	
+	@RequestMapping(value = "/transferData" , method = RequestMethod.GET)
+	public int copyEmpInfoToNewTable(Integer id) {
+		return transferDataService.transferDataToNewTable(id); 
+	}
 }
